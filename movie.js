@@ -44,7 +44,7 @@ var txt  = "Submit<input type = \"button\" onClick = \"submit()\">";
 
               }
           }
-          xmlhttp.open("GET", "http://sunny-song.com/recommend/index.php",true);
+          xmlhttp.open("GET", "http://www.sunny-song.com/cs458/predict.php",true);
           xmlhttp.send();
 }
 
@@ -99,7 +99,7 @@ function submit(){
             end();
               }
               }
-          xmlhttp.open("GET", "http://sunny-song.com/recommend/index.php?query="+rates,true);
+          xmlhttp.open("GET", "http://www.sunny-song.com/cs458/predict.php?query="+rates,true);
           xmlhttp.send();
   }
 }
