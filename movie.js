@@ -4,7 +4,7 @@
  function load(){
 
 var sth = document.getElementById("here"); 
-var txt  = "Submit<input type = \"button\" onClick = \"submit()\">";
+var txt  = "<button type = \"button\" onClick = \"submit()\">Submit</button>";
 
  var xmlhttp;
           if (window.XMLHttpRequest) {
@@ -19,13 +19,15 @@ var txt  = "Submit<input type = \"button\" onClick = \"submit()\">";
 				  json = JSON.parse(xmlhttp.responseText);
 				  
           len = json.Movie.length;
-           for(i=0;i<json.Movie.length;i++){
+          txt = txt + "<table><tr> <th>Movies</th><th>Score</th></center></tr>";
+
+          for(i=0;i<json.Movie.length;i++){
 
             
-            txt = txt + "<center><li>" ;
+            txt = txt + "<tr><td>" ;
             
 
-            txt = txt + "<h3>" + json.Movie[i]["title"];
+            txt = txt + json.Movie[i]["title"] + "</td><td>";
             ids.push(json.Movie[i]["id"]);
 
             txt = txt + " Rate Me <select id = " + i + ">"
@@ -35,9 +37,9 @@ var txt  = "Submit<input type = \"button\" onClick = \"submit()\">";
                       + "<option value = \"3\"> 3</option>" 
                       + "<option value = \"4\"> 4</option>" 
                       + "<option value = \"5\"> 5</option>" 
-                      + "</select> <br>" + "</h3>"
-                      + "</li></center>";
+                      + "</select><br></td></tr>";
           }
+          txt = txt + "</table>";
           var sth = document.getElementById("here");
 				  sth.innerHTML = txt;
 
@@ -71,7 +73,7 @@ function submit(){
  else
  {
  rates = JSON.stringify(rates);
- sth.innerHTML ="Please Wait...";    
+ sth.innerHTML ="<p>Please Wait...</p>";    
   
  start();
           if (window.XMLHttpRequest) {
@@ -83,18 +85,18 @@ function submit(){
           xmlhttp.onreadystatechange = function () {
               if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
          
-          var txt = "";
+          var txt = "<table><tr> <th>Recommended Movies</th><th>Predicted Score</th></center></tr>";
           json = JSON.parse(xmlhttp.responseText);
           
            for(i=0;i<json.Movie.length;i++){
 
 
-            txt = txt + "<center><li>";
+            txt = txt + "<tr><td>";
 
-            txt = txt + "<h3>" + json.Movie[i]["title"] +  " "+ json.Movie[i]["rating"] + "</h3>"
-                      + "</li></center>";
+            txt = txt + json.Movie[i]["title"] +  "</td><td>"+ json.Movie[i]["rating"] + "</td></tr>";
           
           }
+          txt = txt + "</table>";
             sth.innerHTML = txt;     
             end();
               }
